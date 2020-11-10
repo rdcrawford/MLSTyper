@@ -1,0 +1,28 @@
+# ------------------------------------------------------------------------------
+# GetBestMlstMatches
+# 2018/07/20
+# Ryan D. Crawford
+# ------------------------------------------------------------------------------
+
+GetMlstMatches = function(
+  mlstProfile, # 
+  mlstRefData  #
+  )
+{
+  # ---- Find The best match to the mlst data ------------------------------------
+
+  # Find and remove missing observations
+  isNotMissing = !is.na( mlstProfile )
+  if ( sum( isNotMissing ) == 0 ) return( NA )
+  
+  # Find instances where the mlst profile matches a reference 
+  matchScores = sapply( which( isNotMissing ), 
+    function(i) 
+      sum( mlstRefData[i, (2:ncol(mlstRefData))[isNotMissing]] == mlstProfile) == sum(isNotMissing)
+    )
+  
+  # If there is an exact match return the ST of the match, if not return NA
+  if ( sum( isMatch ) == 1 ) return( mlstRefData[ isMatch, 1 ] )
+  return( NA )
+}
+# ------------------------------------------------------------------------------

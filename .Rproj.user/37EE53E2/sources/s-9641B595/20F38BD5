@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1604942383459.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2861417859",
+    "id" : "20F38BD5",
+    "lastKnownWriteTime" : 1604966081,
+    "last_content_update" : 1604966081273,
+    "path" : "~/gl/MLSTyper/R/CalcMlstMatch.R",
+    "project_path" : "R/CalcMlstMatch.R",
+    "properties" : {
+        "cursorPosition" : "20,5",
+        "scrollLine" : "0",
+        "source_window_id" : "wtsr92ysmjacs",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

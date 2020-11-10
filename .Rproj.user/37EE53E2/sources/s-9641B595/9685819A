@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1604958304875.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3978534099",
+    "id" : "9685819A",
+    "lastKnownWriteTime" : 1605011290,
+    "last_content_update" : 1605011290684,
+    "path" : "~/gl/get_mlst.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "22,26",
+        "scrollLine" : "0",
+        "source_window_id" : "",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

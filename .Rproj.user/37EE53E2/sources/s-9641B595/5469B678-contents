@@ -1,0 +1,36 @@
+#include <Rcpp.h>
+using namespace Rcpp;
+
+
+//[[Rcpp::plugins(cpp11)]]
+
+// -----------------------------------------------------------------------------
+
+
+void parseMlstHeader( std::string header, std::string &gene, int &allele )
+{
+  auto lastUs       = header.find_last_of( '_' ) + 1;
+  auto nextToLastUs = header.rfind( '_', lastUs - 2 ) + 1;
+  
+  Rcout << "lastUs: " << lastUs 
+        << " nextToLastUs: " << nextToLastUs 
+        << " size: " <<  header.length() 
+        << std::endl
+  
+  gene   = header.substr( nextToLastUs, lastUs - nextToLastUs - 1 );
+  allele = stoi( header.substr( lastUs, header.length() - lastUs + 1 ) );
+}
+
+// [[Rcpp::export]]
+void test( std::string header )
+{
+  std::string gene;
+  int         allele;
+  parseMlstHeader( header, gene, allele );
+  Rcout << "Gene: " << gene << " allele: " << allele << std::endl;
+}
+
+/*** R
+test( ">Klebsiella_pneumoniae_MLST_tonB_999" )
+*/
+// >Klebsiella_pneumoniae_MLST_tonB_999

@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1604869312291.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1404718908",
+    "id" : "53523917",
+    "lastKnownWriteTime" : 1604964609,
+    "last_content_update" : 1604964609520,
+    "path" : "~/gl/MLSTyper/R/DownloadMlstData.R",
+    "project_path" : "R/DownloadMlstData.R",
+    "properties" : {
+        "cursorPosition" : "65,19",
+        "scrollLine" : "9",
+        "source_window_id" : "wtsr92ysmjacs",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,30 @@
+# ----------------------------------------------------------------------------------------------- #
+# RunBlast                                                                                        #
+# 2018/07/20                                                                                      #
+# Ryan D. Crawford                                                                                #
+# ----------------------------------------------------------------------------------------------- #
+
+RunBlast = function(fastaFiles)
+{
+  for (fasta in fastaFiles) # For each fasta file run the blast script individually 
+  {
+    name = unlist(strsplit(fasta, split = '/'))
+    name = name[length(name)]
+    
+    blastDBs = sapply(mlstGenes, function(x) paste0(refDbPath, '/', x, ".fas"))
+    
+    # Create the output file name
+    outputFileName = paste0(
+      "temp_", gsub(paste0("[.]", fileExtension, "(.*)$"), "_blast_data.tsv", name)
+      )
+
+    for (db in blastDBs) # Run the blast script
+    {
+      system(paste0(
+        "python ", scriptsPath, "src/blast_mlst.py ", fasta, " ", db, " ", outputFileName
+        ))
+    }
+  }
+}
+
+# ----------------------------------------------------------------------------------------------- #

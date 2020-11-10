@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1604782171988.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "433204245",
+    "id" : "2C9C30EF",
+    "lastKnownWriteTime" : 1605011696,
+    "last_content_update" : 1605011696079,
+    "path" : "~/gl/MLSTyper/R/GetMlst.R",
+    "project_path" : "R/GetMlst.R",
+    "properties" : {
+        "cursorPosition" : "110,10",
+        "scrollLine" : "66",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,123 @@
+# ----------------------------------------------------------------------------------------------- #
+# GetBestMlstMatches                                                                              #
+# 2018/07/20                                                                                      #
+# Ryan D. Crawford                                                                                #
+# ----------------------------------------------------------------------------------------------- #
+#  #
+# ----------------------------------------------------------------------------------------------- #
+
+MakeMlstMatchMat = function(
+  blastData # 4 column data frame with subject and query names, query length, and hsp data
+  )
+{
+  # ---- Constant Declarations ------------------------------------------------------------------ #
+  
+  START_POS = 1 # HSP subject start index within the HSP data string 
+  END_POS   = 2 # HSP subject end
+  Q_START   = 3 # HSP query start
+  Q_END     = 4 # HSP query end
+  IDENT     = 5 # HSP percent ID
+  QUERY     = 1 # Col index of query in the blast data 
+  SUBJECT   = 2 # Col index of subject in the blast data 
+  QUERY_LEN = 3 # Col index of query length in the blast data 
+  HSP_DATA  = 4 # Col index of hsp data in the blast data 
+  
+  # ---- Parse the arguments and initialize variables ------------------------------------------- #
+  
+  # Make a matrix to store the percent alignment 
+  bestMatchIdx = rep(0, length(mlstGenes))
+  names(bestMatchIdx) = mlstGenes
+  
+  # ---- Local Function Definitions ------------------------------------------------------------- #
+  
+  # Some sequences have more than one alignment to a given sequence, define a function that 
+  # varses the string into a numeric list
+  MakeHspDataList = function(hspData) # Character vector of the hsp data 
+  {
+    hsps = unlist(strsplit(hspData, split = '[|]'))
+    hsps = sapply(hsps, function(x) lapply(strsplit(x, split = ','), as.numeric))
+    return(hsps)
+  }
+
+  # Given all of the HSP data for a given pair of sequences this function finds non-overlapping 
+  # alignemtns and calculate the perccent identity accross the entire query.
+  GetMaxPercAlignIdx = function(hspList)
+  {
+    # Calculate the lenghts of the HSPs
+    hspLengths = sapply(1:length(hspList), 
+      function(i) abs(hspList[[i]][Q_START] - hspList[[i]][Q_END])
+      )
+
+    # Add the length of the current hsp to the alignment and caculate the percent 
+    hspPercAlign = sapply(1:length(hspList), 
+      function(i) hspList[[i]][IDENT]# / hspLengths[i]
+      )
+    
+    return(max(hspPercAlign))
+  }
+  
+  # Process the name of the blast data to get the int corresponding to the gene type
+  GetGeneIdNum = function(bestMatchSubject)
+  {
+    geneName = unlist(strsplit(bestMatchSubject, split = ' '))[2]
+    geneNum = gsub(paste0(gene, '_'), '', geneName)
+    return(as.numeric(geneNum))
+  }
+  
+  GetPercAlignForAlgn = function(index)
+  {
+    # Concatenate the hsps from all alignments 
+    pairHspData = paste(geneBlastData[index, HSP_DATA], collapse  = '|')
+    
+    # Make a list of all of the data for all of the HSPs
+    hspList = MakeHspDataList(pairHspData)
+    
+    # Determine if any of the HSPs contain a significant alignment  
+    percAlgn = GetMaxPercAlignIdx(hspList)
+    
+    return(percAlgn)
+  }
+  
+  # ---- Find the alignments that are above the percent identity cutoff ------------------------- #
+  
+  # For each alignment, look and see if there are any smaller fragments that have a large identity
+  # within the larger fragment. Keep Iterating over the data set until the current subject is the 
+  # last remaining subject 
+  for (gene in mlstGenes)
+  {
+    # Get the observations that are 
+    isGeneAlignment = grepl(gene, blastData[, SUBJECT], ignore.case = TRUE)
+    geneBlastData = blastData[isGeneAlignment, ]
+    
+    if (sum(isGeneAlignment) == 0)
+    {
+      geneIdNum = NA
+    }
+    else
+    {
+      # 
+      identities = sapply(1:nrow(geneBlastData), GetPercAlignForAlgn)
+      
+      # Get the index of the max number of identities
+      currentBestMatchIdx = which(identities == max(identities))
+      
+      # If there is a tie, type can't be determined... Return NA 
+      if (length(currentBestMatchIdx) > 1)
+      {
+        geneIdNum = NA
+      }
+      else
+      {
+        # Get the best match for the current best match 
+        geneIdNum = GetGeneIdNum(geneBlastData[currentBestMatchIdx, SUBJECT]) 
+      }
+    }
+
+    # Fill in the percent identity at the appropriate index 
+    bestMatchIdx[which(names(bestMatchIdx) == gene)] = geneIdNum
+  }
+  
+  return(bestMatchIdx)
+}
+
+# ----------------------------------------------------------------------------------------------- #

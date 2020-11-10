@@ -1,0 +1,27 @@
+
+#  -----------------------------------------------------------------------------
+#' GetMlstPath
+#  2020/11/07
+#  Ryan D. Crawford
+#  -----------------------------------------------------------------------------
+#' @description Get the path to the MLST database
+#' @param scheme Organisms to look up
+#' @return String with the path to the mlst data
+#' @export
+#  -----------------------------------------------------------------------------
+
+library( MLSTyper )
+
+fastaFiles = system( 
+  "ls hgt_project/data/ltach_genomes/*.fasta", intern = TRUE
+  )
+gSample = sample.int( length( fastaFiles ), 25 )
+fastaFiles = fastaFiles[ gSample ]
+
+mlstData = GetMlst(
+  species    = "Klebsiella pneumoniae",
+  fastaFiles = fastaFiles,
+  outFile    = "2020_11_09_ltach_kleb_mlst.tsv"
+  )
+print( mlstData )
+#  -----------------------------------------------------------------------------
