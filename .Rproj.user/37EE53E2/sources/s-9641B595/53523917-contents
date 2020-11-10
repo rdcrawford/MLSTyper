@@ -3,8 +3,10 @@
 #  2020/11/07
 #  Ryan D. Crawford
 #  -----------------------------------------------------------------------------
-# species = "Klebsiella"
-# speciesspecies = "Klebsiella pneumoniae"
+#' @description  Download and format a MLST database from PubMLST.
+#' @param species The secies to download
+#' @return The path to the MLST database
+#' @export
 #  -----------------------------------------------------------------------------
 
 DownloadMlstData = function( species )
@@ -16,7 +18,7 @@ DownloadMlstData = function( species )
   
   # Find the species of interest
   isSpecies = sapply( 1:length( mlstDbs ),
-    function(i) grepl( species, mlstDbs[[i]][[1]] )
+    function(i) grepl( species, mlstDbs[[i]][[1]], ignore.case = TRUE )
     )
   
   # Check that the species was found
@@ -41,7 +43,7 @@ DownloadMlstData = function( species )
     paste0( .libPaths()[1], "/MLSTyper/data/", gsub( ' ', '_', species ), '/' )
   if ( !file.exists( dataDir ) ) system( paste( "mkdir", dataDir ) )
     
-  # Download the key
+  # Download the keya
   speciesData = mlstDbs[[ which( isSpecies ) ]][[2]]
   profileUrl  = speciesData[[1]][[2]][[1]][[1]]
   cmd = paste0( "wget --output-document=", dataDir, "key.tsv ", profileUrl )

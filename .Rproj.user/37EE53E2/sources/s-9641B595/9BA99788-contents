@@ -5,11 +5,7 @@
 #  -----------------------------------------------------------------------------
 #' @description Look up the mlst type for an organisms of interest
 #' @param mlstPath Path containing the mlst data
-#' @param outDir Directory to write the alignments, other output files, 
-#'   and temp files created by cd-hit and mafft. Defaults to the current 
-#'   working directory.
 #' @return A character matirx with the mlst types
-#' @export
 #  -----------------------------------------------------------------------------
 
 ReadInKey = function( mlstPath )

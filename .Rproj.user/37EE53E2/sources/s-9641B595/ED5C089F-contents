@@ -3,6 +3,9 @@
 #  2020/11/09
 #  Ryan D. Crawford
 #  -----------------------------------------------------------------------------
+#  Sort the blast output data to return a vector with the allele ids in the 
+#  order of the key 
+#  -----------------------------------------------------------------------------
 
 ParseBlastData = function( mlstGenes, blastData )
 {
@@ -16,4 +19,4 @@ ParseBlastData = function( mlstGenes, blastData )
   return( mlstResults )
 }
 
-# ------------------------------------------------------------------------------
+#  -----------------------------------------------------------------------------

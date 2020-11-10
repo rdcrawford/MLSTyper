@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "485963864",
+    "hash" : "1072128689",
     "id" : "ED5C089F",
-    "lastKnownWriteTime" : 1604940056,
-    "last_content_update" : 1604940056695,
+    "lastKnownWriteTime" : 1605036558,
+    "last_content_update" : 1605036558805,
     "path" : "~/gl/MLSTyper/R/ParseBlastData.R",
     "project_path" : "R/ParseBlastData.R",
     "properties" : {
-        "cursorPosition" : "15,9",
+        "cursorPosition" : "18,23",
         "scrollLine" : "0",
         "source_window_id" : "wtsr92ysmjacs",
         "tempName" : "Untitled2"

@@ -3,6 +3,10 @@
 # 2018/07/20
 # Ryan D. Crawford
 # ------------------------------------------------------------------------------
+# For each genome, find the best match for the MLST profile. Return the 
+# results as a character matrix. The last column with the mutations in the
+# mismatch genes. 
+# ------------------------------------------------------------------------------
 
 FindMlst = function(
   mlstKey, # The reference key with the mlst types
@@ -45,6 +49,10 @@ FindMlst = function(
         blList[[i]][ isMismatch, 3],
         sep = ',' 
         ), collapse = ";" )
+      
+      # If there is not already an astrix on the resul, add one
+      if ( !grepl( '*', mlstResults[ i, 1 ], fixed = TRUE ) )
+         mlstResults[ i, 1 ] = paste0( '*',   mlstResults[ i, 1 ] )
     }
     mlstResults = cbind( mlstResults, mismatchAlleles )
   }

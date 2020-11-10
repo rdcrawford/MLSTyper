@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3884353025",
+    "hash" : "0",
     "id" : "9BA99788",
-    "lastKnownWriteTime" : 1604938473,
-    "last_content_update" : 1604938473918,
+    "lastKnownWriteTime" : 1605036895,
+    "last_content_update" : 1605036895993,
     "path" : "~/gl/MLSTyper/R/ReadInKey.R",
     "project_path" : "R/ReadInKey.R",
     "properties" : {
-        "cursorPosition" : "18,41",
+        "cursorPosition" : "7,49",
         "scrollLine" : "0",
         "source_window_id" : "wtsr92ysmjacs",
         "tempName" : "Untitled2"

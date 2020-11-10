@@ -3,6 +3,9 @@
 # 2018/07/20
 # Ryan D. Crawford
 # ------------------------------------------------------------------------------
+# Iterate over the MLST key until an exact match is found. If no exact match
+# is found return the best match followed by an astrix
+# ------------------------------------------------------------------------------
 
 CalcMlstMatch = function(
   mlstKey,    # The reference key with the mlst types
